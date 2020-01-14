@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.zhujiayu.workday_1.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="top.zhujiayu.workday_1.model.User" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="passWord" property="passWord" jdbcType="VARCHAR" />
+        <result column="user_sex" property="userSex" javaType="top.zhujiayu.workday_1.enums.UserSexEnum"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, userName, passWord, user_sex, nick_name
+    </sql>
+    
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <!--<include refid="Base_Column_List" > 这个在MyBatis查询数据库的sql中经常会出现。它的在上面已经定义，作用相当于 * ，
+        Base_Column_List是固定的几个字段，而用*号的话会降低查询效率，因为后期数据库的字段会不断增加。-->
+        <include refid="Base_Column_List"/>
+        FROM users
+    </select>
+
+
+</mapper>
